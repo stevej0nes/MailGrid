@@ -1,10 +1,11 @@
-var helloExtension = (() => {
-  // wwwroot/js/hello-extension.js
-  (() => {
-    const extension = new ExtensionBuilder().addBlock({
+(() => {
+  console.log("📦 MailGrid extension script loaded");
+
+  const extension = new ExtensionBuilder()
+    .addBlock({
       name: "hello-block",
-      label: "\u{1F44B} Hello Block",
-      icon: `<svg ...>\u{1F44B}</svg>`,
+      label: "👋 Hello Block",
+      icon: `<svg viewBox="0 0 24 24" width="20" height="20"><text y="18" font-size="16">👋</text></svg>`,
       create: () => ({
         type: "block",
         elements: [
@@ -16,13 +17,13 @@ var helloExtension = (() => {
           }
         ]
       })
-    }).build();
-    const register = () => {
-      window.helloExtension = extension;
-      globalThis.helloExtension = extension;
-      console.log("\u2705 MailGrid helloExtension registered:", extension);
-    };
-    if (document.readyState === "complete") register();
-    else window.addEventListener("load", register);
-  })();
+    })
+    .build();
+
+  // Register immediately
+  window.helloExtension = extension;
+  globalThis.helloExtension = extension;
+
+  console.log("✅ MailGrid helloExtension ready:", window.helloExtension);
 })();
+
